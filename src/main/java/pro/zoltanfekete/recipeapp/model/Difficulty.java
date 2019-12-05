@@ -1,4 +1,6 @@
 package pro.zoltanfekete.recipeapp.model;
 
-public class Difficulty {
+public enum  Difficulty {
+
+    EASY, MODERATE, HARD;
 }
