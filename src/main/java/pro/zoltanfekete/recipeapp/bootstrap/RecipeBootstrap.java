@@ -12,7 +12,6 @@ import pro.zoltanfekete.recipeapp.repositories.UnitOfMeasureRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -33,80 +32,37 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         recipeRepository.saveAll(getRecipes());
     }
 
+    //Get UOMs
+    private UnitOfMeasure getUnitOfMeasure(String description){
+        return unitOfMeasureRepository
+                .findByDescription(description)
+                .orElseThrow(() -> new RuntimeException("Unit of measure " + description + " not found"));
+    }
+
+    //Get Categories
+    private Category getCategory(String description) {
+        return categoryRepository
+                .findByDescription(description)
+                .orElseThrow(() -> new RuntimeException("Category" + description + " not found"));
+    }
+
     private List<Recipe> getRecipes(){
         List<Recipe> recipes = new ArrayList<>(2);
 
-        //Get UOMs
-        Optional<UnitOfMeasure> teaspoonUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
-        if (teaspoonUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> tablespoonUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Tablespoon");
-        if (tablespoonUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> cupUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Cup");
-        if (cupUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> pinchUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Pinch");
-        if (pinchUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> ounceUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Ounce");
-        if (ounceUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> dashUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Dash");
-        if (dashUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> pintUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Pint");
-        if (pintUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> eachUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Each");
-        if (eachUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
-        Optional<UnitOfMeasure> cloveUnitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Clove");
-        if (cloveUnitOfMeasureOptional.isEmpty()){
-            throw new RuntimeException("Expected UnitOfMeasure Not Found");
-        }
-
         //Get UOM Optinals
-        UnitOfMeasure teaspoonUOM = teaspoonUnitOfMeasureOptional.get();
-        UnitOfMeasure tablespoonUOM = tablespoonUnitOfMeasureOptional.get();
-        UnitOfMeasure cupUOM = cupUnitOfMeasureOptional.get();
-        UnitOfMeasure pinchUOM = pinchUnitOfMeasureOptional.get();
-        UnitOfMeasure ounceUOM = ounceUnitOfMeasureOptional.get();
-        UnitOfMeasure dashUOM = dashUnitOfMeasureOptional.get();
-        UnitOfMeasure pintUOM = pintUnitOfMeasureOptional.get();
-        UnitOfMeasure eachUOM = eachUnitOfMeasureOptional.get();
-        UnitOfMeasure cloveUOM = cloveUnitOfMeasureOptional.get();
-
-        //Get Categories
-        Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");
-        if (americanCategoryOptional.isEmpty()){
-            throw new RuntimeException("Expected Category Not Found");
-        }
-
-        Optional<Category> mexicanCategoryOptional = categoryRepository.findByDescription("Mexican");
-        if (mexicanCategoryOptional.isEmpty()){
-            throw new RuntimeException("Expected Category Not Found");
-        }
+        UnitOfMeasure teaspoonUOM = getUnitOfMeasure("Teaspoon");
+        UnitOfMeasure tablespoonUOM = getUnitOfMeasure("Tablespoon");
+        UnitOfMeasure cupUOM = getUnitOfMeasure("Cup");
+        UnitOfMeasure pinchUOM = getUnitOfMeasure("Pinch");
+        UnitOfMeasure ounceUOM = getUnitOfMeasure("Ounce");
+        UnitOfMeasure dashUOM = getUnitOfMeasure("Dash");
+        UnitOfMeasure pintUOM = getUnitOfMeasure("Pint");
+        UnitOfMeasure eachUOM =getUnitOfMeasure("Each");
+        UnitOfMeasure cloveUOM = getUnitOfMeasure("Clove");
 
         //Get Category Optionals
-        Category americanCategory = americanCategoryOptional.get();
-        Category mexicanCategory = mexicanCategoryOptional.get();
+        Category americanCategory = getCategory("American");
+        Category mexicanCategory = getCategory("Mexican");
 
         //Perfect Guacamole
         Recipe perfectGuacamoleRecipe = new Recipe();
