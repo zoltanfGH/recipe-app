@@ -1,12 +1,13 @@
 package pro.zoltanfekete.recipeapp.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(exclude="recipe") @ToString(exclude = "recipe")
 @Entity
 public class Notes {
 

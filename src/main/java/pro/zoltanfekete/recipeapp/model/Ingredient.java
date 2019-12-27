@@ -1,13 +1,14 @@
 package pro.zoltanfekete.recipeapp.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(exclude="recipe") @ToString(exclude = "recipe")
 @Entity
 public class Ingredient {
 
@@ -25,7 +26,6 @@ public class Ingredient {
     private Recipe recipe;
 
     public Ingredient() {
-
     }
 
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure){
