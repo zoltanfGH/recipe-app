@@ -1,7 +1,7 @@
 package pro.zoltanfekete.recipeapp.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import pro.zoltanfekete.recipeapp.model.UnitOfMeasure;
+import pro.zoltanfekete.recipeapp.domain.UnitOfMeasure;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package pro.zoltanfekete.recipeapp.model;
+package pro.zoltanfekete.recipeapp.domain;
 
 public enum  Difficulty {
 

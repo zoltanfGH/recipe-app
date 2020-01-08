@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import pro.zoltanfekete.recipeapp.model.*;
+import pro.zoltanfekete.recipeapp.domain.*;
 import pro.zoltanfekete.recipeapp.repositories.CategoryRepository;
 import pro.zoltanfekete.recipeapp.repositories.RecipeRepository;
 import pro.zoltanfekete.recipeapp.repositories.UnitOfMeasureRepository;
@@ -79,7 +79,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         perfectGuacamoleRecipe.setDifficulty(Difficulty.EASY);
         perfectGuacamoleRecipe.setServings(2);
         perfectGuacamoleRecipe.setSource("Simply Recipes");
-        //perfectGuacamoleRecipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        perfectGuacamoleRecipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         perfectGuacamoleRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
                 "\n" +
                 "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)\n" +
@@ -134,7 +134,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         spicyGrilledChickenTacosRecipe.setCookTime(15);
         spicyGrilledChickenTacosRecipe.setServings(4);
         spicyGrilledChickenTacosRecipe.setSource("Simply Recipes");
-        //spicyGrilledChickenTacosRecipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos");
+        spicyGrilledChickenTacosRecipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos");
         spicyGrilledChickenTacosRecipe.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\n" +
                 "\n" +
                 "2 Make the marinade and coat the chicken: In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\n" +

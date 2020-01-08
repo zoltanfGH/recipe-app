@@ -1,4 +1,4 @@
-package pro.zoltanfekete.recipeapp.model;
+package pro.zoltanfekete.recipeapp.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
