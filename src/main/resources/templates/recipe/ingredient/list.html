@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Recipe Home</title>
+    <meta charset="UTF-8"/>
+    <title>Show Recipe</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"
@@ -17,19 +17,26 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"
             th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
-
 </head>
 <body>
-
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="card primary-card">
+            <div class="card primary-card" style="margin-bottom: 10px;">
                 <div class="card-header bg-primary text-light">
-                    <h1 class="card-title">Recipes</h1>
+                    <div class="container-fluid" style="padding-left: 0">
+                        <div class="row align-items-center">
+                            <div class="col-md-11">
+                                <h1 class="card-title">Ingredients</h1>
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-primary" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/new'}" role="button">New</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(recipe.ingredients)}">
                         <table class="table table-hover">
                             <thead class="thead-inverse">
                             <tr>
@@ -54,27 +61,20 @@
                                 <td><a href="#">Update</a></td>
                                 <td><a href="#">Delete</a></td>
                             </tr>
-                            <tr th:each="recipe : ${recipes}">
+                            <tr th:each="ingredient : ${recipe.ingredients}">
                                 <!--/*@thymesVar id="recipe" type="pro.zoltanfekete.recipeapp.domain.Recipe"*/-->
-                                <td th:text="${recipe.id}">334</td>
-                                <td th:text="${recipe.description}">Tasty Goodness 3</td>
-                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show' }">View</a></td>
-                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update' }">Update</a></td>
-                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete' }">Delete</a></td>
+                                <td th:text="${ingredient.id}">334</td>
+                                <td th:text="${ingredient.amount} + ' ' + ${ingredient.unitOfMeasure.getDescription()} + ' ' + ${ingredient.description}">Tasty Goodnees 3</td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/show' }">View</a></td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/update' }">Update</a></td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/delete' }">Delete</a></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
-
-
-
-
-
 </body>
 </html>

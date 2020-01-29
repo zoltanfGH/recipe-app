@@ -1,14 +1,16 @@
 package pro.zoltanfekete.recipeapp.domain;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude="categories") @ToString(exclude = "categories")
 @Entity
 public class Recipe {
